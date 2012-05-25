@@ -42,7 +42,7 @@ public class WebClient extends WebViewClient {
 					view.loadUrl("javascript: debug('" + dumpEvent(arg1) + "');");
 				}
 
-				return true;
+				return true;	// TRUE == stop propagating / bubbling event to other handlers
 			}
 		});
 	}

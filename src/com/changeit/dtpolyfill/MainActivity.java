@@ -17,7 +17,7 @@ public class MainActivity extends Activity
 		webview.setWebViewClient(new WebClient());
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.loadUrl("file:///android_asset/www/index.html");
-		
+
 		setContentView(webview);
     }
 }

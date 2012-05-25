@@ -7,6 +7,9 @@ and open the template in the editor.
 	<head>
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<script type="text/javascript" src="js/magictouch.js"></script>
+		<script type="text/javascript" src="js/wmp-currentTouch.js"></script>
 		<link href="wmp.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript">
 			var tapCount = 0;
@@ -29,37 +32,39 @@ and open the template in the editor.
 				updateTapCount();
 			}
 
-		function decrementTapCount() {
-			--tapCount;
-			updateTapCount();
-		}
-
-		function updateTapCount() {
-			if (tapCount > 0)
-				divs.tap.setAttribute('class', 'ok');
-
-			if (tapCount > maxTapCount)
-				maxTapCount = tapCount;
-
-			divs.tap.innerHTML = 'Taps registered: ' + tapCount + '<ul><li>High score: ' + maxTapCount + ' taps</li></ul>';
-
-			if (maxTapCount > 1) {
-				divs.info.setAttribute('class', 'awesome');
-				divs.info.textContent = '>2 parallel taps registered! See high scores above.';
+			function decrementTapCount() {
+				--tapCount;
+				updateTapCount();
 			}
-		}
 
-		function debug(text, startNewLog)
-		{
-			if (startNewLog)
-				return divs.debug.textContent = text;
+			function updateTapCount() {
+				if (tapCount > 0)
+					divs.tap.setAttribute('class', 'ok');
 
-			return divs.debug.innerHTML = text + '<br />' + divs.debug.innerHTML;
-		}
+				if (tapCount > maxTapCount)
+					maxTapCount = tapCount;
+
+				divs.tap.innerHTML = 'Taps registered: ' + tapCount + '<ul><li>High score: ' + maxTapCount + ' taps</li></ul>';
+
+				if (maxTapCount > 1) {
+					divs.info.setAttribute('class', 'awesome');
+					divs.info.textContent = '>2 parallel taps registered! See high scores above.';
+				}
+			}
+
+			function debug(text, startNewLog)
+			{
+				if (startNewLog)
+					return divs.debug.textContent = text;
+
+				return divs.debug.innerHTML = text + '<br />' + divs.debug.innerHTML;
+			}
 		</script>
 
 	</head>
-	<body>
+	<body onload="ol()">
+		<canvas id="canvas" width="300" height="300" style="top:0px; left:0px; width: 300px; height: 300px;"></canvas>
+		<object id="tuio" type="application/x-tuio"></object>
 		<ul>
 			<li class="ok">Greetings, Earthling!</li>
 			<li id="test-js" class="bad">Javascript is not enabled your WebView :(</li>
@@ -69,15 +74,15 @@ and open the template in the editor.
 		<div id="info-wrapper"><div id="info" class="hidden"></div></div>
 		<div id="debug"></div>
 		<script type="text/javascript">
-		var divs =  {
-			js: document.getElementById('test-js'),
-			inject: document.getElementById('test-inject'),
-			tap: document.getElementById('test-tap'),
-			debug: document.getElementById('debug'),
-			info: document.getElementById('info')
-		};
+			var divs =  {
+				js: document.getElementById('test-js'),
+				inject: document.getElementById('test-inject'),
+				tap: document.getElementById('test-tap'),
+				debug: document.getElementById('debug'),
+				info: document.getElementById('info')
+			};
 
-		tellJsWorking();
+			tellJsWorking();
 		</script>
 	</body>
 </html>
