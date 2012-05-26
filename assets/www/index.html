@@ -59,6 +59,18 @@ and open the template in the editor.
 
 				return divs.debug.innerHTML = text + '<br />' + divs.debug.innerHTML;
 			}
+
+			window.onload = function() {
+				var divs =  {
+					js: document.getElementById('test-js'),
+					inject: document.getElementById('test-inject'),
+					tap: document.getElementById('test-tap'),
+					debug: document.getElementById('debug'),
+					info: document.getElementById('info')
+				};
+
+				tellJsWorking();
+			}
 		</script>
 
 	</head>
@@ -73,16 +85,5 @@ and open the template in the editor.
 		</ul>
 		<div id="info-wrapper"><div id="info" class="hidden"></div></div>
 		<div id="debug"></div>
-		<script type="text/javascript">
-			var divs =  {
-				js: document.getElementById('test-js'),
-				inject: document.getElementById('test-inject'),
-				tap: document.getElementById('test-tap'),
-				debug: document.getElementById('debug'),
-				info: document.getElementById('info')
-			};
-
-			tellJsWorking();
-		</script>
 	</body>
 </html>
